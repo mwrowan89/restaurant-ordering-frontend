@@ -8,7 +8,7 @@ interface MenuItem {
   price: number;
 }
 
-const MenuList: React.FC = () => {
+const MenuList = () => {
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
 
   const getMenuList = async (): Promise<MenuItem[]> => {
@@ -32,15 +32,20 @@ const MenuList: React.FC = () => {
   }, []);
 
   return (
-    <div className="menu-list">
-      <h1>Menu List</h1>
-      {menuList.map((item) => (
-        <div key={item.id} className="menu-item">
-          <h2>{item.name}</h2>
-          <p>{item.description}</p>
-          <p>Price: ${item.price.toFixed(2)}</p>
-        </div>
-      ))}
+    <div className="menu-list p-4">
+      <h1 className="text-2xl font-bold mb-4">Menu List</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {menuList.map((item) => (
+          <div
+            key={item.id}
+            className="menu-item bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
+          >
+            <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
+            <p className="text-gray-600 mb-4">{item.description}</p>
+            <p className="text-lg font-bold">Price: ${item.price.toFixed(2)}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
