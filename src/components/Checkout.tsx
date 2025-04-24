@@ -49,7 +49,7 @@ const Checkout = () => {
         <div className="cart-container">
           <ul>
             {cart.map((item) => (
-              <li key={item.id} className="cart-item">
+              <li key={item.id} className="cart-item-checkout">
                 <div>
                   <p className="item-name">{item.name}</p>
                   <p className="item-details">
@@ -63,9 +63,10 @@ const Checkout = () => {
             ))}
           </ul>
           <div>
+            <h2 className="cart-tax">Total: ${cartTotal.toFixed(2)}</h2>
             <h2 className="cart-tax">Tax (8%): ${tax.toFixed(2)}</h2>
             <div className="tip-section">
-              <label>Tip:</label>
+              <label></label>
               <div className="tip-buttons">
                 <button
                   className={`tip-button ${
@@ -100,9 +101,9 @@ const Checkout = () => {
                   className="custom-tip-input"
                 />
               </div>
-              <span className="tip-amount">(${tip.toFixed(2)})</span>
+              <span className="tip-amount">Tip: (${tip.toFixed(2)})</span>
             </div>
-            <h2 className="cart-total">
+            <h2 className="cart-total-checkout">
               Grand Total: ${grandTotal.toFixed(2)}
             </h2>
             <button onClick={handleBuyNow} className="buy-now-button">

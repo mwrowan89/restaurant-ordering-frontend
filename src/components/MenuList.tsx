@@ -70,13 +70,15 @@ const MenuList = () => {
               className="menu-item-image"
             />
             <p className="menu-item-description">{item.description}</p>
-            <p className="menu-item-price">Price: ${item.price.toFixed(2)}</p>
-            <button
-              onClick={() => handleAddToCart(item)}
-              className="menu-item-button"
-            >
-              Add to Cart
-            </button>
+            <div className="menu-item-price-button">
+              <p className="menu-item-price">Price: ${item.price.toFixed(2)}</p>
+              <button
+                onClick={() => handleAddToCart(item)}
+                className="menu-item-button"
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         ))}
       </div>

@@ -28,14 +28,15 @@ const Cart = () => {
           </div>
         ))}
       </div>
+
+      <div className="cart-total">
+        <h2 className="cart-total-title">Total:</h2>
+        <span className="cart-total-amount">${getCartTotal().toFixed(2)}</span>
+      </div>
       <div className="mt-6 flex gap-4">
         <button onClick={clearCart} className="cart-clear">
           Clear Cart
         </button>
-      </div>
-      <div className="cart-total">
-        <h2 className="cart-total-title">Total:</h2>
-        <span className="cart-total-amount">${getCartTotal().toFixed(2)}</span>
       </div>
     </div>
   );
