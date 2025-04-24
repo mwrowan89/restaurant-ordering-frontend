@@ -1,36 +1,28 @@
+import "./Header.css";
+
 const Header = () => {
   return (
-    <header className="bg-gray-800 text-white">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <h1 className="text-xl font-bold">
+    <header>
+      <div className="container">
+        <h1>
           <a href="/">Home</a>
         </h1>
         <nav>
-          <ul className="flex space-x-6">
+          <ul>
             <li>
-              <a href="/register" className="hover:text-gray-300">
-                Register
-              </a>
+              <a href="/register">Register</a>
             </li>
             <li>
-              <a href="/checkout" className="hover:text-gray-300">
-                Checkout
-              </a>
+              <a href="/checkout">Checkout</a>
             </li>
             <li>
-              <a href="/past-orders" className="hover:text-gray-300">
-                Past Orders
-              </a>
+              <a href="/past-orders">Past Orders</a>
             </li>
             <li>
-              <a href="/login" className="hover:text-gray-300">
-                Log In
-              </a>
+              <a href="/login">Log In</a>
             </li>
             <li>
-              <a href="/cart" className="hover:text-gray-300">
-                Cart
-              </a>
+              <a href="/cart">Cart</a>
             </li>
           </ul>
         </nav>

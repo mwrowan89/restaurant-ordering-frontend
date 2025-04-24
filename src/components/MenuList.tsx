@@ -54,29 +54,26 @@ const MenuList = () => {
   };
 
   return (
-    <div className="menu-list p-4">
+    <div className="menu-list">
       {successMessage && (
         <div className="success-message">{successMessage}</div>
       )}
 
-      <h1 className="text-2xl font-bold mb-4">Menu List</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <h1 className="menu-title">Menu List</h1>
+      <div className="menu-grid">
         {menuList.map((item) => (
-          <div
-            key={item.id}
-            className="menu-item bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
-          >
-            <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
+          <div key={item.id} className="menu-item">
+            <h2 className="menu-item-title">{item.name}</h2>
             <img
               src={`src${item.imageurl}`}
               alt={item.name}
-              className="w-full h-32 object-cover rounded mb-2"
+              className="menu-item-image"
             />
-            <p className="text-gray-600 mb-4">{item.description}</p>
-            <p className="text-lg font-bold">Price: ${item.price.toFixed(2)}</p>
+            <p className="menu-item-description">{item.description}</p>
+            <p className="menu-item-price">Price: ${item.price.toFixed(2)}</p>
             <button
               onClick={() => handleAddToCart(item)}
-              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="menu-item-button"
             >
               Add to Cart
             </button>
