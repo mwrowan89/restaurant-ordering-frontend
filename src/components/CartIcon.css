@@ -4,3 +4,23 @@
   height: 5vh;
   width: 5vw;
 }
+
+.cart-icon {
+  cursor: pointer;
+}
+.cart-icon-hover {
+  font-size: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  width: auto;
+  height: auto;
+}
+
+.cart-icon .absolute {
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
