@@ -10,19 +10,21 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="/register">Register</a>
-            </li>
-            <li>
-              <a href="/checkout">Checkout</a>
-            </li>
-            <li>
-              <a href="/past-orders">Past Orders</a>
-            </li>
-            <li>
               <a href="/login">Log In</a>
             </li>
             <li>
+              <a href="/register">Register</a>
+            </li>
+
+            <li>
+              <a href="/past-orders">Orders</a>
+            </li>
+
+            <li>
               <a href="/cart">Cart</a>
+            </li>
+            <li>
+              <a href="/checkout">Checkout</a>
             </li>
           </ul>
         </nav>
