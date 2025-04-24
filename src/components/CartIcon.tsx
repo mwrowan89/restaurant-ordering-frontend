@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./CartIcon.css";
 
 const CartIcon = () => {
-  const { cart } = useCart();
+  const { cart, getCartTotal } = useCart();
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -37,15 +37,21 @@ const CartIcon = () => {
         </span>
       )}
       {isHovered && cart.length > 0 && (
-        <div className="absolute top-10 right-0 bg-white border border-gray-300 shadow-lg rounded w-64 p-4 z-50">
-          <ul className="text-sm">
+        <div className="cart-dropdown">
+          <ul className="cart-dropdown-list">
             {cart.map((item) => (
-              <li key={item.id} className="cart-icon-hover">
+              <li key={item.id} className="cart-item-hover">
                 <span>{item.name}</span>
                 <span>x{item.quantity}</span>
               </li>
             ))}
           </ul>
+          <div className="cart-icon-total">
+            <span className="font-bold">Total:</span>
+            <span className="text-lg font-semibold">
+              ${getCartTotal().toFixed(2)}
+            </span>
+          </div>
         </div>
       )}
     </div>
