@@ -40,7 +40,11 @@ const MenuList = () => {
 
   const handleAddToCart = (item: MenuItem) => {
     addToCart({
-      id: item.id.toString(),
+      id: item.id,
+      description: item.description,
+      category: item.category,
+      available: item.available,
+      imageurl: item.imageurl,
       name: item.name,
       price: item.price,
       quantity: 1,

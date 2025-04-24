@@ -1,9 +1,7 @@
-import { useCart } from '../context/CartContext';
+import { useCart } from "../context/CartContext";
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useCart();
-
-  console.log("Current cart state:", cart);
+  const { cart, removeFromCart, clearCart, getCartTotal } = useCart();
 
   return (
     <div className="p-4">
@@ -15,6 +13,11 @@ const Cart = () => {
             className="bg-white shadow-md rounded-lg p-4 flex flex-col items-start"
           >
             <h3 className="text-lg font-semibold">{item.name}</h3>
+            <img
+              src={`src${item.imageurl}`}
+              alt={item.name}
+              className="w-full h-32 object-cover rounded mb-2"
+            />
             <p className="text-gray-600">
               {item.quantity} x ${item.price.toFixed(2)}
             </p>
@@ -34,6 +37,12 @@ const Cart = () => {
         >
           Clear Cart
         </button>
+      </div>
+      <div className="mt-6 p-4 bg-gray-100 rounded-lg shadow-md flex justify-between items-center">
+        <h2 className="text-lg font-semibold text-gray-700">Total:</h2>
+        <span className="text-2xl font-bold text-gray-900">
+          ${getCartTotal().toFixed(2)}
+        </span>
       </div>
     </div>
   );
