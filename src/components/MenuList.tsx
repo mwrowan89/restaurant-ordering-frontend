@@ -5,7 +5,10 @@ interface MenuItem {
   id: number;
   name: string;
   description: string;
+  category: string;
   price: number;
+  imageurl: string;
+  available: boolean;
 }
 
 const MenuList = () => {
@@ -14,6 +17,7 @@ const MenuList = () => {
   const getMenuList = async (): Promise<MenuItem[]> => {
     try {
       const response = await axios.get<MenuItem[]>('/api/menuitems');
+      console.log("Menu list fetched successfully:", response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching menu list:", error);
@@ -39,8 +43,13 @@ const MenuList = () => {
           <div
             key={item.id}
             className="menu-item bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow"
-          >
+          > 
             <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
+            <img
+              src={`src${item.imageurl}`}
+              alt={item.name}
+              className="w-full h-32 object-cover rounded mb-2"
+            />
             <p className="text-gray-600 mb-4">{item.description}</p>
             <p className="text-lg font-bold">Price: ${item.price.toFixed(2)}</p>
           </div>
