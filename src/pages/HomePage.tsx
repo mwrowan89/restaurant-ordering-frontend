@@ -1,4 +1,3 @@
-import React from 'react'
 import MenuList from '../components/MenuList'
 
 const HomePage = () => {
@@ -7,4 +6,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default HomePage;
