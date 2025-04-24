@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const MenuList = () => {
     function getMenuList() {
-        return axios.get('http://localhost:8080/api/menuitems')
+        return axios.get('/api/menuitems')
           .then(response => response.data)
           .catch(error => {
             console.error("Error fetching menu list:", error);
