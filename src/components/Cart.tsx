@@ -1,8 +1,10 @@
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart, getCartTotal } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div className="cart-container">
@@ -33,9 +35,16 @@ const Cart = () => {
         <h2 className="cart-total-title">Total:</h2>
         <span className="cart-total-amount">${getCartTotal().toFixed(2)}</span>
       </div>
-      <div className="mt-6 flex gap-4">
+      <div className="cart-action-btns">
         <button onClick={clearCart} className="cart-clear">
           Clear Cart
+        </button>
+        <button
+          onClick={() => navigate("/checkout")}
+          className="cart-checkout"
+          disabled={cart.length === 0}
+        >
+          Checkout
         </button>
       </div>
     </div>

@@ -67,6 +67,12 @@
   background-color: #dc2626;
 }
 
+.cart-action-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
 .cart-clear {
   background-color: #1f2937;
   color: white;
@@ -77,6 +83,15 @@
 
 .cart-clear:hover {
   background-color: #111827;
+}
+
+.cart-checkout {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+  float: right;
 }
 
 .cart-total {
