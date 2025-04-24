@@ -18,6 +18,15 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
         <h2 className="modal-title">Enter Payment Details</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+            <label className="form-label">Name on Card</label>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+          <div className="form-group">
             <label className="form-label">Card Number</label>
             <input
               type="text"
@@ -26,23 +35,25 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
               required
             />
           </div>
-          <div className="form-group">
-            <label className="form-label">Expiry Date</label>
-            <input
-              type="text"
-              className="form-input"
-              placeholder="MM/YY"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">CVV</label>
-            <input
-              type="text"
-              className="form-input"
-              placeholder="123"
-              required
-            />
+          <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">Exp Date</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label className="form-label">CVV</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="123"
+                required
+              />
+            </div>
           </div>
           <div className="button-group">
             <button type="button" onClick={onClose} className="cancel-button">

@@ -51,7 +51,7 @@
 
 .button-group {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .cancel-button {
@@ -77,4 +77,13 @@
 
 .submit-button:hover {
   background-color: #3182ce;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
 }
