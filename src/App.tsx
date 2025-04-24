@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import Cart from "./components/Cart";
 import CartIcon from "./components/CartIcon";
+import Checkout from "./components/Checkout";
 
 import "./App.css";
 
@@ -24,7 +25,7 @@ function App() {
             </div>
           }
         />
-        {/* <Route path="/contact" element={<div>Contact</div>} /> */}
+        <Route path="/checkout" element={<Checkout />} />
         {/* <Route path="/menu" element={<div>Menu</div>} /> */}
         {/* <Route path="/menu/:id" element={<div>Menu Item</div>} /> */}
       </Routes>
