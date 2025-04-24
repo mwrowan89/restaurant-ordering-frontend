@@ -1,17 +1,9 @@
 import { useCart } from '../context/CartContext';
 
 const Cart = () => {
-  const { cart, addToCart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart } = useCart();
 
-  const handleAddToCart = () => {
-    const newItem = {
-      id: '12',
-      name: 'Soup',
-      price: 12.99,
-      quantity: 1,
-    };
-    addToCart(newItem);
-  };
+  console.log("Current cart state:", cart);
 
   return (
     <div className="p-4">
@@ -41,12 +33,6 @@ const Cart = () => {
           className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900"
         >
           Clear Cart
-        </button>
-        <button
-          onClick={handleAddToCart}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Add Item
         </button>
       </div>
     </div>

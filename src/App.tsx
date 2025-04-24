@@ -11,7 +11,6 @@ function App() {
 
   return (
     <CartProvider>
-    
     <Header />
     <Routes>
       <Route path="/" element={<HomePage />} />

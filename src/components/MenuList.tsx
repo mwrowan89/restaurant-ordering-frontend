@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useCart } from "../context/CartContext";
 
 interface MenuItem {
   id: number;
@@ -13,11 +14,12 @@ interface MenuItem {
 
 const MenuList = () => {
   const [menuList, setMenuList] = useState<MenuItem[]>([]);
+  const { addToCart } = useCart(); 
 
   const getMenuList = async (): Promise<MenuItem[]> => {
     try {
       const response = await axios.get<MenuItem[]>('/api/menuitems');
-      console.log("Menu list fetched successfully:", response.data);
+      //console.log("Menu list fetched successfully:", response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching menu list:", error);
@@ -52,6 +54,12 @@ const MenuList = () => {
             />
             <p className="text-gray-600 mb-4">{item.description}</p>
             <p className="text-lg font-bold">Price: ${item.price.toFixed(2)}</p>
+            <button
+              onClick={() => addToCart({ id: item.id.toString(), name: item.name, price: item.price, quantity: 1 })}
+              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            >
+              Add to Cart
+            </button>
           </div>
         ))}
       </div>
