@@ -53,9 +53,7 @@ const Orders = () => {
         .filter((item): item is MenuItem => item !== undefined);
 
       setOrderMenuItems(filteredMenuItems);
-      setTotal(
-        orderItemsResponse.data.reduce((sum, item) => sum + item.price, 0)
-      );
+      setTotal(orderItemsResponse.data[0].price);
       setSearchResult(orderResponse.data);
       setErrorMessage(null);
     } catch (error) {
