@@ -12,7 +12,7 @@ const Checkout = () => {
   const [selectedTip, setSelectedTip] = useState(0.18);
   const [customTip, setCustomTip] = useState("");
   const [isCustomTipSelected, setIsCustomTipSelected] = useState(false);
-  const [orderData, setOrderData] = useState(null); // State to store the order data
+  const [orderData, setOrderData] = useState(null);
 
   const handleBuyNow = () => {
     setIsModalOpen(true);
@@ -67,7 +67,6 @@ const Checkout = () => {
 
     try {
       const response = await axios.post("/api/orders", orderData);
-      console.log("Order submitted successfully:", response);
       const createdOrderData = response.data;
       setOrderData(createdOrderData);
 
@@ -79,11 +78,10 @@ const Checkout = () => {
         firstName: paymentMethod.name,
       }));
 
-      const menuItemsResponse = await axios.post(
+      await axios.post(
         `/api/items/order/${createdOrderData.id}`,
         menuItemsData
       );
-      console.log("Menu items submitted successfully:", menuItemsResponse);
       setIsModalOpen(true);
     } catch (error) {
       console.error("Error submitting order or menu items:", error);

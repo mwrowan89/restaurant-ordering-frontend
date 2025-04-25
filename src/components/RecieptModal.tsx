@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./RecieptModal.css";
 
 interface Order {
@@ -16,17 +17,24 @@ interface ReceiptProps {
 }
 
 const Receipt = ({ order, onClose }: ReceiptProps) => {
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    onClose();
+    navigate("/");
+  };
+
   return (
     <div className="receipt-modal">
       <div className="receipt-content">
-        <button className="close-button" onClick={onClose}>
+        <button className="close-button" onClick={handleClose}>
           Close
         </button>
         <h1>Receipt</h1>
         <p>Order ID: {order.id}</p>
         <p>Order Time: {new Date(order.ordertime).toLocaleString()}</p>
         <p>Status: {order.status}</p>
-        //TODO not working
+        {/* //TODO not working */}
         {/* <p>Tax: ${order.tax.toFixed(2)}</p>
         <p>Tip: ${order.tip.toFixed(2)}</p>
         <p>Total: ${(order.tax + order.tip).toFixed(2)}</p> */}
