@@ -86,9 +86,7 @@ const Checkout = () => {
       );
 
       clearCart();
-      navigate(`/orders/${createdOrderData.id}`, {
-        state: { orderId: createdOrderData.id },
-      });
+      navigate(`/orders/${createdOrderData.id}`);
     } catch (error) {
       console.error("Error submitting order or menu items:", error);
       alert("Failed to submit order or menu items. Please try again.");
