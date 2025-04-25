@@ -26,6 +26,15 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:orderId" element={<OrderDetails />} />
+          <Route
+            path="*"
+            element={
+              <div className="not-found">
+                Sorry, this page doesn't exist yet. Please check check back
+                later.
+              </div>
+            }
+          />
         </Routes>
         <Footer />
       </MenuItemsProvider>
