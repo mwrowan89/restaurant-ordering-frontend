@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Orders.css";
 import { useMenuItems } from "../context/MenuItemsContext";
@@ -29,9 +30,19 @@ const Orders = () => {
   const [searchResult, setSearchResult] = useState<Order | null>(null);
   const [orderMenuItems, setOrderMenuItems] = useState<MenuItem[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const location = useLocation();
 
-  const handleSearch = async () => {
-    if (!searchId) {
+  useEffect(() => {
+    const orderIdFromState = location.state?.orderId;
+    if (orderIdFromState) {
+      setSearchId(orderIdFromState.toString());
+      handleSearch(orderIdFromState.toString());
+    }
+  }, [location.state]);
+
+  const handleSearch = async (id?: string) => {
+    const orderId = id || searchId;
+    if (!orderId) {
       setErrorMessage("Please enter a valid Order ID.");
       setSearchResult(null);
       return;
@@ -39,10 +50,10 @@ const Orders = () => {
 
     try {
       // Gets order by order ID
-      const orderResponse = await axios.get<Order>(`/api/orders/${searchId}`);
+      const orderResponse = await axios.get<Order>(`/api/orders/${orderId}`);
       // Gets items from order by order ID
       const orderItemsResponse = await axios.get<OrderItems[]>(
-        `/api/items/order/${searchId}`
+        `/api/items/order/${orderId}`
       );
 
       // Filter menu items from context based on the item IDs in the order
@@ -86,7 +97,7 @@ const Orders = () => {
           onChange={(e) => setSearchId(e.target.value)}
           className="search-input"
         />
-        <button onClick={handleSearch} className="search-button">
+        <button onClick={() => handleSearch()} className="search-button">
           Search
         </button>
       </div>

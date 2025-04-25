@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import PaymentModal from "./PaymentModal";
 import { PaymentMethod } from "./PaymentModal";
@@ -13,6 +14,7 @@ const Checkout = () => {
   const [customTip, setCustomTip] = useState("");
   const [isCustomTipSelected, setIsCustomTipSelected] = useState(false);
   const [orderData, setOrderData] = useState(null);
+  const navigate = useNavigate();
 
   const handleBuyNow = () => {
     setIsModalOpen(true);
@@ -84,7 +86,7 @@ const Checkout = () => {
       );
 
       clearCart();
-      setIsModalOpen(true);
+      navigate(`/orders`, { state: { orderId: createdOrderData.id } });
     } catch (error) {
       console.error("Error submitting order or menu items:", error);
       alert("Failed to submit order or menu items. Please try again.");
