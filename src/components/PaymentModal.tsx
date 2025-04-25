@@ -4,27 +4,29 @@ import "./PaymentModal.css";
 
 interface PaymentModalProps {
   onClose: () => void;
+  onSubmitPayment: (paymentMethod: PaymentMethod) => void;
 }
-interface PaymentMethod {
+export interface PaymentMethod {
   userid: number;
   pan: string; //cc number
   expiryMonth: number;
   expiryYear: number;
-  status: string;
 }
 
-const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
-  const [order, setOrder] = useState<PaymentMethod>({
+const PaymentModal: React.FC<PaymentModalProps> = ({
+  onClose,
+  onSubmitPayment,
+}) => {
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>({
     userid: 1,
     pan: "",
     expiryMonth: 0,
     expiryYear: 0,
-    status: "pending",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setOrder((prevOrder) => ({
+    setPaymentMethod((prevOrder) => ({
       ...prevOrder,
       [name]: value,
     }));
@@ -32,7 +34,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Order submitted:", order);
+    onSubmitPayment(paymentMethod);
     onClose();
   };
 

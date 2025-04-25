@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import PaymentModal from "./PaymentModal";
+import { PaymentMethod } from "./PaymentModal";
 import "./Checkout.css";
 
 const Checkout = () => {
@@ -39,6 +41,38 @@ const Checkout = () => {
     ? parseFloat(customTip) || 0
     : cartTotal * selectedTip;
   const grandTotal = cartTotal + tax + tip;
+
+  const handlePaymentSubmit = async (paymentMethod: PaymentMethod) => {
+    const cartTotal = getCartTotal();
+    const tax = cartTotal * 0.08; // 8% tax
+    const tip = isCustomTipSelected
+      ? parseFloat(customTip) || 0
+      : cartTotal * selectedTip;
+
+    const orderData = {
+      userid: paymentMethod.userid,
+      ordertime: new Date().toISOString(),
+      items: cart,
+      tax,
+      tip,
+      paymentMethod,
+      pan: paymentMethod.pan,
+      expiryMonth: paymentMethod.expiryMonth,
+      expiryYear: paymentMethod.expiryYear,
+      status: "pending",
+    };
+
+    try {
+      const response = await axios.post("/api/orders", orderData);
+      console.log("Order submitted successfully:", response);
+      alert("Order submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting order:", error);
+      alert("Failed to submit order. Please try again.");
+    }
+
+    setIsModalOpen(false); // Close the modal after submission
+  };
 
   return (
     <div className="checkout-container">
@@ -112,7 +146,12 @@ const Checkout = () => {
           </div>
         </div>
       )}
-      {isModalOpen && <PaymentModal onClose={closeModal} />}
+      {isModalOpen && (
+        <PaymentModal
+          onClose={closeModal}
+          onSubmitPayment={handlePaymentSubmit}
+        />
+      )}
     </div>
   );
 };
