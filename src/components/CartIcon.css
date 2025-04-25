@@ -8,15 +8,6 @@
 .cart-icon {
   cursor: pointer;
 }
-.cart-icon-hover {
-  font-size: 1rem;
-  display: flex;
-  gap: 1rem;
-  justify-content: space-around;
-  width: auto;
-  height: auto;
-}
-
 .cart-icon .absolute {
   font-size: 0.9rem;
   font-weight: bold;
@@ -25,6 +16,30 @@
   justify-content: center;
 }
 
+.cart-icon-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 9999px;
+  height: 1.25rem;
+  width: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon-hover {
+  font-size: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+  width: auto;
+  height: auto;
+}
 .cart-dropdown {
   position: absolute;
   top: 5vh;

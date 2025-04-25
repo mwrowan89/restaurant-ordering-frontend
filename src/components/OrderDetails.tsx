@@ -43,7 +43,7 @@ const OrderDetails = () => {
           `/api/items/order/${orderId}`
         );
 
-        // Map order items to menu items
+        // Map order items from menu items
         const filteredMenuItems = orderItemsResponse.data
           .map((orderItem) =>
             menuItems.find((menuItem) => menuItem.id === orderItem.itemid)
@@ -116,12 +116,8 @@ const OrderDetails = () => {
       <hr />
       <br />
       <div className="order-price-summary">
-        <p>
-          <strong>Tax:</strong> ${order.tax.toFixed(2)}
-        </p>
-        <p>
-          <strong>Tip:</strong> ${order.tip.toFixed(2)}
-        </p>
+        <p>Tax: ${order.tax.toFixed(2)}</p>
+        <p>Tip: ${order.tip.toFixed(2)}</p>
         <p>
           <strong>Total:</strong> ${orderTotal.toFixed(2)}
         </p>
