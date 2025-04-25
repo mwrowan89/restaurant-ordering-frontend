@@ -99,7 +99,6 @@ const OrderDetails = () => {
       <p>
         <strong>Status:</strong> {order.status}
       </p>
-      <h2 className="order-items-title">Order Items</h2>
       <ul className="order-items-list">
         {orderMenuItems.map((item, index) => (
           <li key={index} className="order-item">

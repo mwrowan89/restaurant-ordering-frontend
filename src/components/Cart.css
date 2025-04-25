@@ -1,3 +1,4 @@
+/* Page level */
 .cart-container {
   margin-top: 5vh !important;
   padding: 1rem;
@@ -10,7 +11,9 @@
   font-weight: bold;
   margin-bottom: 1rem;
 }
+/*  */
 
+/* Cart Items */
 .cart-item-container {
   display: flex;
   flex-wrap: wrap;
@@ -57,14 +60,16 @@
 .cart-item-remove:hover {
   background-color: #dc2626;
 }
+/*  */
 
+/* Clean and check out btns */
 .cart-action-btns {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
 }
 
-.cart-clear {
+.cart-clear-btn {
   background-color: #1f2937;
   color: white;
   padding: 0.5rem 1rem;
@@ -76,15 +81,17 @@
   background-color: #111827;
 }
 
-.cart-checkout {
-  background-color: #3b82f6;
+.cart-checkout-btn {
+  background-color: var(--color-blue-btn);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   transition: background-color 0.2s;
   float: right;
 }
+/*  */
 
+/* Cart Total */
 .cart-total {
   margin-top: 1.5rem;
   padding: 1rem;
@@ -107,3 +114,4 @@
   font-weight: bold;
   color: #111827;
 }
+/*  */

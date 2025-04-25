@@ -1,5 +1,6 @@
 :root {
-  --color-gray-800: #2d3748;
+  --color-gray-background: #2d3748;
+  --color-blue-btn: #4299e1;
 }
 
 #root {

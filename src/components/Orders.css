@@ -1,16 +1,57 @@
-/* .search-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 32px;
-} */
-
-.orders-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* All orders page */
+.orders-container {
+  padding: 1.5rem;
+  min-height: 70vh;
+}
+.orders-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.table-container {
+  overflow-x: auto;
 }
 
+/* Orders table */
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #d1d5db;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #f3f4f6;
+}
+
+.table-row {
+  cursor: pointer;
+}
+
+.table-row:hover {
+  background-color: #e5e7eb;
+}
+/*  */
+
+/* No data */
+.no-orders {
+  color: #6b7280;
+}
+.error-message {
+  color: #ff4d4f;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 16px;
+}
+/*  */
+
+/* Order Details Page */
 .order-items-list {
   list-style: none;
   padding: 0;
@@ -42,13 +83,6 @@
   font-size: 1rem;
   color: #333;
 }
-#order-item-price {
-  float: right;
-}
-
-.order-item strong {
-  font-weight: bold;
-}
 
 .order-price-summary {
   display: flex;
@@ -57,70 +91,7 @@
   font-size: 1.25rem;
 }
 
-.order-items-title {
-  text-align: center;
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-  color: #555;
-}
-
 .order-item p {
   margin: 4px 0;
   color: #555;
-}
-
-.error-message {
-  color: #ff4d4f;
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 16px;
-}
-
-.orders-container {
-  padding: 1.5rem;
-  min-height: 70vh;
-}
-
-.orders-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.error-message {
-  color: #f56565;
-}
-
-.table-container {
-  overflow-x: auto;
-}
-
-.orders-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #d1d5db;
-}
-
-.orders-table th,
-.orders-table td {
-  border: 1px solid #d1d5db;
-  padding: 0.5rem 1rem;
-  text-align: left;
-}
-
-.orders-table th {
-  background-color: #f3f4f6;
-}
-
-.table-row {
-  cursor: pointer;
-}
-
-.table-row:hover {
-  background-color: #e5e7eb;
-}
-
-.no-orders {
-  color: #6b7280;
 }

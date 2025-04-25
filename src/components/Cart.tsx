@@ -55,12 +55,12 @@ const Cart = () => {
         <span className="cart-total-amount">${getCartTotal().toFixed(2)}</span>
       </div>
       <div className="cart-action-btns">
-        <button onClick={clearCart} className="cart-clear">
+        <button onClick={clearCart} className="cart-clear-btn">
           Clear Cart
         </button>
         <button
           onClick={() => navigate("/checkout")}
-          className="cart-checkout"
+          className="cart-checkout-btn"
           disabled={cart.length === 0}
         >
           Checkout

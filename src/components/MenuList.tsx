@@ -29,6 +29,9 @@ const MenuList = () => {
       name: item.name,
       price: item.price,
       quantity: 1,
+      updateCartItemQuantity: (id: number, quantity: number) => {
+        console.log(`Updating item ${id} quantity to ${quantity}`);
+      },
     });
     setSuccessMessage(`${item.name} has been added to the cart!`);
     setTimeout(() => setSuccessMessage(null), 3000);
@@ -41,24 +44,21 @@ const MenuList = () => {
       : menuItems.filter((item) => item.category === selectedCategory);
 
   return (
-    <div className="menu-list">
+    <div className="menu-list-container">
       {successMessage && (
         <div className="success-message">{successMessage}</div>
       )}
 
       <h1 className="menu-title">Menu List</h1>
 
-      {/* Category Tabs  */}
-      <div className="tabs flex justify-center space-x-4 mb-6">
+      <div className="tabs">
         {["all", "entrees", "sushi", "desserts", "pho"].map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded ${
-              selectedCategory === category
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            } hover:bg-blue-400 hover:text-white`}
+            className={`tab-button ${
+              selectedCategory === category ? "active" : ""
+            }`}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </button>

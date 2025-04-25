@@ -1,3 +1,4 @@
+/* Page level */
 .checkout-container {
   padding: 1.5rem;
   background-color: #f7fafc;
@@ -15,7 +16,9 @@
   text-align: center;
   color: #a0aec0;
 }
+/*  */
 
+/* Cart box display */
 .cart-container {
   margin: 0 auto;
   background-color: #ffffff;
@@ -23,7 +26,9 @@
   border-radius: 0.5rem;
   padding: 1.5rem;
 }
+/*  */
 
+/* Cart items */
 .cart-item-checkout {
   padding: 1rem 0;
   display: flex;
@@ -51,35 +56,9 @@
   font-weight: 600;
   color: #2d3748;
 }
+/*  */
 
-.cart-total-checkout {
-  margin-top: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: right;
-  padding: 1rem;
-  background-color: #f3f4f6;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.buy-now-button {
-  margin-top: 1rem;
-  width: 100%;
-  background-color: #4299e1;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
-}
-
-.buy-now-button:hover {
-  background-color: #3182ce;
-}
-
+/* Cart tax and tip */
 .cart-tax {
   margin-top: 1rem;
   font-size: 1rem;
@@ -124,13 +103,12 @@
 }
 
 .tip-button.active {
-  background-color: #4299e1;
+  background-color: var(--color-blue-btn);
   color: #ffffff;
-  border-color: #4299e1;
 }
 
 .tip-button:hover {
-  background-color: #e2e8f0;
+  background-color: #b1cdf1;
 }
 
 .custom-tip-input {
@@ -140,3 +118,36 @@
   width: 6rem;
   text-align: center;
 }
+/*  */
+
+/* Cart total */
+.cart-total-checkout {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*  */
+
+/* Checkout button */
+.buy-now-button {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: var(--color-blue-btn);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.buy-now-button:hover {
+  background-color: #3182ce;
+}
+/*  */

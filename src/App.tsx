@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import { MenuItemsProvider } from "./context/MenuItemsContext";
 import Header from "./components/Header";
-import HomePage from "./pages/HomePage";
+import MenuList from "./components/MenuList";
 import Cart from "./components/Cart";
 import CartIcon from "./components/CartIcon";
 import Checkout from "./components/Checkout";
@@ -21,7 +21,7 @@ function App() {
           <CartIcon />
         </div>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<MenuList />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<Orders />} />

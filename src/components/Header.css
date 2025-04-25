@@ -1,5 +1,5 @@
 header {
-  background-color: #2d3748;
+  background-color: var(--color-gray-800);
   color: white;
 }
 
