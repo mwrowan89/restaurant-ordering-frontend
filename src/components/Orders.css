@@ -10,6 +10,8 @@
 }
 .table-container {
   overflow-x: auto;
+  display: flex;
+  justify-content: center;
 }
 
 /* Orders table */
@@ -17,6 +19,7 @@
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #d1d5db;
+  max-width: 80vw;
 }
 
 .orders-table th,

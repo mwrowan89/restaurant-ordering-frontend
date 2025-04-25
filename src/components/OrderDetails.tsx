@@ -99,6 +99,7 @@ const OrderDetails = () => {
       <p>
         <strong>Status:</strong> {order.status}
       </p>
+      <br />
       <ul className="order-items-list">
         {orderMenuItems.map((item, index) => (
           <li key={index} className="order-item">
@@ -111,6 +112,9 @@ const OrderDetails = () => {
           </li>
         ))}
       </ul>
+      <br />
+      <hr />
+      <br />
       <div className="order-price-summary">
         <p>
           <strong>Tax:</strong> ${order.tax.toFixed(2)}

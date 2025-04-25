@@ -1,3 +1,6 @@
+// This component is not used in the current version of the app.
+// It is a modal that displays the receipt of an order.
+
 import { useNavigate } from "react-router-dom";
 import "./RecieptModal.css";
 
