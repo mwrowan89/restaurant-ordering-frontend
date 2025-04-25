@@ -63,6 +63,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
               className="form-input"
               placeholder="1234 5678 9012 3456"
               name="pan"
+              minLength={16}
               onChange={handleChange}
               required
             />
@@ -74,6 +75,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                 type="number"
                 max={12}
                 min={1}
+                maxLength={2}
                 className="form-input"
                 placeholder="MM"
                 name="expiryMonth"
@@ -86,6 +88,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
               <input
                 type="number"
                 min={0}
+                minLength={2}
+                maxLength={4}
                 className="form-input"
                 placeholder="YY"
                 name="expiryYear"
@@ -100,6 +104,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                 className="form-input"
                 placeholder="123"
                 name="cvv"
+                minLength={3}
                 onChange={handleChange}
                 required
               />

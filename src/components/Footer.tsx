@@ -5,10 +5,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-info">
-          <h2 className="footer-title">Restaurant Name</h2>
-          <p className="footer-text">123 Foodie Lane, Flavor Town, USA</p>
+          <h2 className="footer-title">Weathertop Grill</h2>
+          <p className="footer-text">501 Buckland Road, Buckland</p>
           <p className="footer-text">Phone: (123) 456-7890</p>
-          <p className="footer-text">Email: contact@restaurant.com</p>
+          <p className="footer-text">Email: baggins@weathertopgrill.com</p>
         </div>
         <div className="footer-links">
           <a href="/about" className="footer-link">
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2025 Restaurant Name. All rights reserved.</p>
+        <p>&copy; 2025 Weathertop Grill. All rights reserved.</p>
       </div>
     </footer>
   );
