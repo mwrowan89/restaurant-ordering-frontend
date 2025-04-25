@@ -7,6 +7,7 @@ import Cart from "./components/Cart";
 import CartIcon from "./components/CartIcon";
 import Checkout from "./components/Checkout";
 import Orders from "./components/Orders";
+import OrderDetails from "./components/OrderDetails";
 
 import "./App.css";
 
@@ -20,16 +21,10 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route
-            path="/cart"
-            element={
-              <div>
-                <Cart />
-              </div>
-            }
-          />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:orderId" element={<OrderDetails />} />
         </Routes>
       </MenuItemsProvider>
     </CartProvider>
