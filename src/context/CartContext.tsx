@@ -15,6 +15,7 @@ interface CartItem {
   imageurl: string;
   available: boolean;
   quantity: number;
+  updateCartItemQuantity: (id: number, quantity: number) => void;
 }
 
 interface CartContextType {
@@ -23,6 +24,7 @@ interface CartContextType {
   removeFromCart: (id: number) => void;
   clearCart: () => void;
   getCartTotal: () => number;
+  updateCartItemQuantity: (id: number, quantity: number) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -55,18 +57,29 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const removeFromCart = (id: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
-
   const clearCart = () => {
     setCart([]);
   };
 
+  const updateCartItemQuantity = (id: number, quantity: number) => {
+    setCart((prevCart) =>
+      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
+    );
+  };
   const getCartTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, getCartTotal }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        getCartTotal,
+        updateCartItemQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>

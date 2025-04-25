@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart, getCartTotal } = useCart();
+  const {
+    cart,
+    removeFromCart,
+    clearCart,
+    getCartTotal,
+    updateCartItemQuantity,
+  } = useCart();
   const navigate = useNavigate();
 
   return (
@@ -19,7 +25,20 @@ const Cart = () => {
               className="cart-item-image"
             />
             <p className="cart-item-price">
-              {item.quantity} x ${item.price.toFixed(2)}
+              <select
+                value={item.quantity}
+                onChange={(e) =>
+                  updateCartItemQuantity(item.id, parseInt(e.target.value))
+                }
+                className="cart-item-quantity-dropdown"
+              >
+                {Array.from({ length: 10 }, (_, i) => i + 1).map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              x ${item.price.toFixed(2)}
             </p>
             <button
               onClick={() => removeFromCart(item.id)}
