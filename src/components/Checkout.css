@@ -108,7 +108,7 @@
 }
 
 .tip-button:hover {
-  background-color: #b1cdf1;
+  background-color: var(--color-blue-btn);
 }
 
 .custom-tip-input {
