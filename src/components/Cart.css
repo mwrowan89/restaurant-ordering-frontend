@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 5px;
 }
 
 .cart-item-title {
@@ -55,6 +56,8 @@
   padding: 0.25rem 0.75rem;
   border-radius: 0.25rem;
   transition: background-color 0.2s;
+  width: 6vw;
+  margin-left: auto;
 }
 
 .cart-item-remove:hover {
@@ -62,7 +65,7 @@
 }
 /*  */
 
-/* Clean and check out btns */
+/* Clear and check out btns */
 .cart-action-btns {
   display: flex;
   justify-content: space-between;

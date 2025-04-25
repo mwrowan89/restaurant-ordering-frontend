@@ -38,7 +38,7 @@ const Cart = () => {
                   </option>
                 ))}
               </select>
-              x ${item.price.toFixed(2)}
+              &nbsp;&nbsp; x &nbsp;&nbsp;${item.price.toFixed(2)}
             </p>
             <button
               onClick={() => removeFromCart(item.id)}
