@@ -74,7 +74,7 @@ const Checkout = () => {
         orderid: createdOrderData.id,
         itemid: item.id,
         price: grandTotal,
-        notes: "Some notes //TODO",
+        notes: item.name,
         firstName: paymentMethod.name,
       }));
 

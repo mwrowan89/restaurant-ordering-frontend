@@ -11,9 +11,18 @@ interface Order {
   total: number;
   status: string;
 }
+interface OrderItems {
+  id: number;
+  orderid: number;
+  itemid: number;
+  price: number;
+  notes: string;
+  firstname: string;
+}
 
 const Orders = () => {
   const [orders] = useState<Order[]>([]);
+  const [orderItems, setOrderItems] = useState<OrderItems[]>([]);
   const [searchId, setSearchId] = useState<string>("");
   const [searchResult, setSearchResult] = useState<Order | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -27,6 +36,10 @@ const Orders = () => {
 
     try {
       const response = await axios.get<Order>(`/api/orders/${searchId}`);
+      const itemResponse = await axios.get<OrderItems[]>(
+        `/api/items/order/${searchId}`
+      );
+      setOrderItems(itemResponse.data);
       setSearchResult(response.data);
       setErrorMessage(null);
     } catch (error) {
@@ -83,6 +96,25 @@ const Orders = () => {
           {/* <p><strong>Tax:</strong> ${searchResult.tax.toFixed(2)}</p>
           <p><strong>Tip:</strong> ${searchResult.tip.toFixed(2)}</p> */}
           <hr />
+          {orderItems.length > 0 && (
+            <div>
+              <h3 className="order-items-title">Order Items</h3>
+              <ul className="order-items-list">
+                {orderItems.map((item) => (
+                  <li key={item.id} className="order-item">
+                    <p>{item.notes}</p>
+                    <p>
+                      <strong>Price:</strong> ${item.price.toFixed(2)}
+                    </p>
+                    <p>
+                      <strong>Notes:</strong> {item.notes}
+                    </p>
+                    <hr />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
 
