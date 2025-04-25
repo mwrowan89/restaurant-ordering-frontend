@@ -51,7 +51,6 @@ const OrderDetails = () => {
           .filter((item): item is MenuItem => item !== undefined);
 
         setOrderMenuItems(filteredMenuItems);
-        console.log("Order Menu Items:", filteredMenuItems);
         setErrorMessage(null);
       } catch (error) {
         if (

@@ -55,7 +55,7 @@ const Orders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {[...orders].reverse().map((order) => (
                 <tr
                   key={order.id}
                   className="table-row"
