@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./Orders.css";
+import { useMenuItems } from "../context/MenuItemsContext";
 import { MenuItem } from "./MenuList";
 
 interface Order {
@@ -22,11 +23,11 @@ interface OrderItems {
 }
 
 const Orders = () => {
-  const [orders] = useState<Order[]>([]);
-  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const { menuItems } = useMenuItems();
   const [total, setTotal] = useState(0);
   const [searchId, setSearchId] = useState<string>("");
   const [searchResult, setSearchResult] = useState<Order | null>(null);
+  const [orderMenuItems, setOrderMenuItems] = useState<MenuItem[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSearch = async () => {
@@ -37,22 +38,24 @@ const Orders = () => {
     }
 
     try {
-      //Gets order by order ID
+      // Gets order by order ID
       const orderResponse = await axios.get<Order>(`/api/orders/${searchId}`);
-      //Gets items from order by order ID
+      // Gets items from order by order ID
       const orderItemsResponse = await axios.get<OrderItems[]>(
         `/api/items/order/${searchId}`
       );
-      //Gets menu items by item ID from order items
-      const menuItemsPromises = orderItemsResponse.data.map((item) =>
-        axios.get<MenuItem>(`/api/menuitems/${item.itemid}`)
+
+      // Filter menu items from context based on the item IDs in the order
+      const filteredMenuItems = orderItemsResponse.data
+        .map((orderItem) =>
+          menuItems.find((menuItem) => menuItem.id === orderItem.itemid)
+        )
+        .filter((item): item is MenuItem => item !== undefined);
+
+      setOrderMenuItems(filteredMenuItems);
+      setTotal(
+        orderItemsResponse.data.reduce((sum, item) => sum + item.price, 0)
       );
-
-      const menuItemsResponses = await Promise.all(menuItemsPromises);
-      const menuItemsData = menuItemsResponses.map((response) => response.data);
-
-      setMenuItems(menuItemsData);
-      setTotal(orderItemsResponse.data[0].price);
       setSearchResult(orderResponse.data);
       setErrorMessage(null);
     } catch (error) {
@@ -105,7 +108,6 @@ const Orders = () => {
           <p>
             <strong>Status:</strong> {searchResult.status}
           </p>
-          {/* Uncomment if tax and tip are working */}
           <p>
             <strong>Tax:</strong> ${searchResult.tax.toFixed(2)}
           </p>
@@ -116,11 +118,11 @@ const Orders = () => {
             <strong>Total:</strong> ${total.toFixed(2)}
           </p>
           <hr />
-          {menuItems.length > 0 && (
+          {orderMenuItems.length > 0 && (
             <div>
               <h3 className="order-items-title">Order Items</h3>
               <ul className="order-items-list">
-                {menuItems.map((item) => (
+                {orderMenuItems.map((item) => (
                   <li key={item.id} className="order-item">
                     <p>
                       <strong>{item.name}</strong>
@@ -133,43 +135,12 @@ const Orders = () => {
                     <p id="order-item-price">
                       <strong>Price:</strong> ${item.price.toFixed(2)}
                     </p>
-                    {/* <p>
-                      <strong>Notes:</strong> {item.notes}
-                    </p> */}
                   </li>
                 ))}
               </ul>
             </div>
           )}
         </div>
-      )}
-
-      {orders.length === 0 ? (
-        <p className="no-orders"></p>
-      ) : (
-        <ul className="orders-list">
-          {orders.map((order) => (
-            <li key={order.id} className="order-item">
-              <p>
-                <strong>Order ID:</strong> {order.id}
-              </p>
-              <p>
-                <strong>Order Time:</strong>{" "}
-                {new Date(order.ordertime).toLocaleString()}
-              </p>
-              <p>
-                <strong>Status:</strong> {order.status}
-              </p>
-              <p>
-                <strong>Tax:</strong> ${order.tax.toFixed(2)}
-              </p>
-              <p>
-                <strong>Tip:</strong> ${order.tip.toFixed(2)}
-              </p>
-              <hr />
-            </li>
-          ))}
-        </ul>
       )}
     </div>
   );

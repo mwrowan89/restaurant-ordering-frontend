@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import { useMenuItems } from "../context/MenuItemsContext";
 import "./MenuList.css";
 
 export interface MenuItem {
@@ -14,29 +14,9 @@ export interface MenuItem {
 }
 
 const MenuList = () => {
-  const [menuList, setMenuList] = useState<MenuItem[]>([]);
+  const { menuItems, loading, error } = useMenuItems();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const { addToCart } = useCart();
-
-  const getMenuList = async (): Promise<MenuItem[]> => {
-    try {
-      const response = await axios.get<MenuItem[]>("/api/menuitems");
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching menu list:", error);
-      throw error;
-    }
-  };
-
-  useEffect(() => {
-    getMenuList()
-      .then((data) => {
-        setMenuList(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
 
   const handleAddToCart = (item: MenuItem) => {
     addToCart({
@@ -53,6 +33,14 @@ const MenuList = () => {
     setTimeout(() => setSuccessMessage(null), 3000);
   };
 
+  if (loading) {
+    return <div>Loading menu items...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="menu-list">
       {successMessage && (
@@ -61,7 +49,7 @@ const MenuList = () => {
 
       <h1 className="menu-title">Menu List</h1>
       <div className="menu-grid">
-        {menuList.map((item) => (
+        {menuItems.map((item) => (
           <div key={item.id} className="menu-item">
             <h2 className="menu-item-title">{item.name}</h2>
             <img
