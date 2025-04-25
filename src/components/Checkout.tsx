@@ -7,7 +7,7 @@ import "./Checkout.css";
 import Receipt from "./RecieptModal"; // Import the Receipt component
 
 const Checkout = () => {
-  const { cart, getCartTotal } = useCart();
+  const { cart, getCartTotal, clearCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTip, setSelectedTip] = useState(0.18);
   const [customTip, setCustomTip] = useState("");
@@ -82,6 +82,8 @@ const Checkout = () => {
         `/api/items/order/${createdOrderData.id}`,
         menuItemsData
       );
+
+      clearCart();
       setIsModalOpen(true);
     } catch (error) {
       console.error("Error submitting order or menu items:", error);

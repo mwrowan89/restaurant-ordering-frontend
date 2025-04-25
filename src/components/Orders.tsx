@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./Orders.css";
+import { MenuItem } from "./MenuList";
 
 interface Order {
   id: number;
@@ -22,7 +23,8 @@ interface OrderItems {
 
 const Orders = () => {
   const [orders] = useState<Order[]>([]);
-  const [orderItems, setOrderItems] = useState<OrderItems[]>([]);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [total, setTotal] = useState(0);
   const [searchId, setSearchId] = useState<string>("");
   const [searchResult, setSearchResult] = useState<Order | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -35,12 +37,23 @@ const Orders = () => {
     }
 
     try {
-      const response = await axios.get<Order>(`/api/orders/${searchId}`);
-      const itemResponse = await axios.get<OrderItems[]>(
+      //Gets order by order ID
+      const orderResponse = await axios.get<Order>(`/api/orders/${searchId}`);
+      //Gets items from order by order ID
+      const orderItemsResponse = await axios.get<OrderItems[]>(
         `/api/items/order/${searchId}`
       );
-      setOrderItems(itemResponse.data);
-      setSearchResult(response.data);
+      //Gets menu items by item ID from order items
+      const menuItemsPromises = orderItemsResponse.data.map((item) =>
+        axios.get<MenuItem>(`/api/menuitems/${item.itemid}`)
+      );
+
+      const menuItemsResponses = await Promise.all(menuItemsPromises);
+      const menuItemsData = menuItemsResponses.map((response) => response.data);
+
+      setMenuItems(menuItemsData);
+      setTotal(orderItemsResponse.data[0].price);
+      setSearchResult(orderResponse.data);
       setErrorMessage(null);
     } catch (error) {
       if (
@@ -93,23 +106,36 @@ const Orders = () => {
             <strong>Status:</strong> {searchResult.status}
           </p>
           {/* Uncomment if tax and tip are working */}
-          {/* <p><strong>Tax:</strong> ${searchResult.tax.toFixed(2)}</p>
-          <p><strong>Tip:</strong> ${searchResult.tip.toFixed(2)}</p> */}
+          <p>
+            <strong>Tax:</strong> ${searchResult.tax.toFixed(2)}
+          </p>
+          <p>
+            <strong>Tip:</strong> ${searchResult.tip.toFixed(2)}
+          </p>
+          <p>
+            <strong>Total:</strong> ${total.toFixed(2)}
+          </p>
           <hr />
-          {orderItems.length > 0 && (
+          {menuItems.length > 0 && (
             <div>
               <h3 className="order-items-title">Order Items</h3>
               <ul className="order-items-list">
-                {orderItems.map((item) => (
+                {menuItems.map((item) => (
                   <li key={item.id} className="order-item">
-                    <p>{item.notes}</p>
                     <p>
+                      <strong>{item.name}</strong>
+                    </p>
+                    {/* <img
+                      className="order-item-img"
+                      src={`src${item.imageurl}`}
+                      alt={item.name}
+                    /> */}
+                    <p id="order-item-price">
                       <strong>Price:</strong> ${item.price.toFixed(2)}
                     </p>
-                    <p>
+                    {/* <p>
                       <strong>Notes:</strong> {item.notes}
-                    </p>
-                    <hr />
+                    </p> */}
                   </li>
                 ))}
               </ul>

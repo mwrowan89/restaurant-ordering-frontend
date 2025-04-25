@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import "./MenuList.css";
 
-interface MenuItem {
+export interface MenuItem {
   id: number;
   name: string;
   description: string;

@@ -71,23 +71,56 @@
   margin: 0;
 }
 
-.order-item {
-  background-color: white;
-  padding: 16px;
+.order-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 8px;
+  padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+#order-item-price {
+  float: right;
+}
+
+.order-item strong {
+  font-weight: bold;
+}
+
+.order-items-title {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
   margin-bottom: 16px;
+  color: #555;
 }
 
 .order-item p {
   margin: 4px 0;
   color: #555;
-}
-
-.order-item hr {
-  margin: 12px 0;
-  border: none;
-  border-top: 1px solid #eee;
 }
 
 .error-message {
