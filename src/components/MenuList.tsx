@@ -14,8 +14,9 @@ export interface MenuItem {
 }
 
 const MenuList = () => {
-  const { menuItems, loading, error } = useMenuItems();
+  const { menuItems } = useMenuItems();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const { addToCart } = useCart();
 
   const handleAddToCart = (item: MenuItem) => {
@@ -33,13 +34,11 @@ const MenuList = () => {
     setTimeout(() => setSuccessMessage(null), 3000);
   };
 
-  if (loading) {
-    return <div>Loading menu items...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  //Filter menu items based on category
+  const filteredMenuItems =
+    selectedCategory === "all"
+      ? menuItems
+      : menuItems.filter((item) => item.category === selectedCategory);
 
   return (
     <div className="menu-list">
@@ -48,8 +47,26 @@ const MenuList = () => {
       )}
 
       <h1 className="menu-title">Menu List</h1>
+
+      {/* Category Tabs  */}
+      <div className="tabs flex justify-center space-x-4 mb-6">
+        {["all", "entrees", "sushi", "desserts", "pho"].map((category) => (
+          <button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`px-4 py-2 rounded ${
+              selectedCategory === category
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200 text-gray-700"
+            } hover:bg-blue-400 hover:text-white`}
+          >
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </button>
+        ))}
+      </div>
+
       <div className="menu-grid">
-        {menuItems.map((item) => (
+        {filteredMenuItems.map((item) => (
           <div key={item.id} className="menu-item">
             <h2 className="menu-item-title">{item.name}</h2>
             <img

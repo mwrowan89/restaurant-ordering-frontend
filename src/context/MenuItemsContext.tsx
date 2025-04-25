@@ -19,8 +19,6 @@ export interface MenuItem {
 
 interface MenuItemsContextType {
   menuItems: MenuItem[];
-  loading: boolean;
-  error: string | null;
 }
 
 const MenuItemsContext = createContext<MenuItemsContextType | undefined>(
@@ -29,19 +27,15 @@ const MenuItemsContext = createContext<MenuItemsContextType | undefined>(
 
 export const MenuItemsProvider = ({ children }: { children: ReactNode }) => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
         const response = await axios.get<MenuItem[]>("/api/menuitems");
         setMenuItems(response.data);
-        setLoading(false);
       } catch (err) {
         console.error("Error fetching menu items:", err);
-        setError("Failed to fetch menu items.");
-        setLoading(false);
+        alert("Failed to fetch menu items.");
       }
     };
 
@@ -49,7 +43,7 @@ export const MenuItemsProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <MenuItemsContext.Provider value={{ menuItems, loading, error }}>
+    <MenuItemsContext.Provider value={{ menuItems }}>
       {children}
     </MenuItemsContext.Provider>
   );
