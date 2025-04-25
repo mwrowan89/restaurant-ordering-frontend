@@ -8,6 +8,7 @@ import CartIcon from "./components/CartIcon";
 import Checkout from "./components/Checkout";
 import Orders from "./components/Orders";
 import OrderDetails from "./components/OrderDetails";
+import Footer from "./components/Footer";
 
 import "./App.css";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:orderId" element={<OrderDetails />} />
         </Routes>
+        <Footer />
       </MenuItemsProvider>
     </CartProvider>
   );

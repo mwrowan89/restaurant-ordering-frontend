@@ -1,9 +1,9 @@
-.search-container {
+/* .search-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 32px;
-}
+} */
 
 .orders-list {
   list-style: none;
@@ -79,6 +79,7 @@
 
 .orders-container {
   padding: 1.5rem;
+  min-height: 70vh;
 }
 
 .orders-title {
