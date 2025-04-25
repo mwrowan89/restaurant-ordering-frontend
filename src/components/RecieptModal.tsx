@@ -26,9 +26,10 @@ const Receipt = ({ order, onClose }: ReceiptProps) => {
         <p>Order ID: {order.id}</p>
         <p>Order Time: {new Date(order.ordertime).toLocaleString()}</p>
         <p>Status: {order.status}</p>
-        <p>Tax: ${order.tax.toFixed(2)}</p>
+        //TODO not working
+        {/* <p>Tax: ${order.tax.toFixed(2)}</p>
         <p>Tip: ${order.tip.toFixed(2)}</p>
-        <p>Total: ${(order.tax + order.tip).toFixed(2)}</p>
+        <p>Total: ${(order.tax + order.tip).toFixed(2)}</p> */}
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 
 interface Order {
@@ -13,32 +12,50 @@ interface Order {
 }
 
 const Orders = () => {
-  const location = useLocation();
-  const [orders, setOrders] = useState<Order[]>([]);
-  const userid = location.state?.userid || 1;
+  const [orders] = useState<Order[]>([]);
+  const [searchId, setSearchId] = useState<string>("");
+  const [searchResult, setSearchResult] = useState<Order | null>(null);
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get<Order[]>(`/api/orders`);
-        setOrders(response.data);
+  const handleSearch = async () => {
+    if (!searchId) return;
 
-        if (location.state?.newOrder) {
-          setOrders((prevOrders) => [location.state.newOrder, ...prevOrders]);
-        }
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-    };
-
-    fetchOrders();
-  }, [location.state, userid]);
+    try {
+      const response = await axios.get<Order>(`/api/orders/${searchId}`);
+      setSearchResult(response.data);
+    } catch (error) {
+      console.error("Error fetching order by ID:", error);
+      setSearchResult(null);
+    }
+  };
 
   return (
     <div className="orders-container">
       <h1>Your Orders</h1>
+
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Enter Order ID"
+          value={searchId}
+          onChange={(e) => setSearchId(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+
+      {searchResult && (
+        <div className="search-result">
+          <h2>Search Result</h2>
+          <p>Order ID: {searchResult.id}</p>
+          <p>Order Time: {new Date(searchResult.ordertime).toLocaleString()}</p>
+          <p>Status: {searchResult.status}</p>
+          {/* //TODO not working */}
+          {/* <p>Tax: ${searchResult.tax.toFixed(2)}</p>
+          <p>Tip: ${searchResult.tip.toFixed(2)}</p> */}
+          <hr />
+        </div>
+      )}
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p></p>
       ) : (
         <ul>
           {orders.map((order) => (

@@ -6,7 +6,6 @@ import Cart from "./components/Cart";
 import CartIcon from "./components/CartIcon";
 import Checkout from "./components/Checkout";
 import Orders from "./components/Orders";
-import ReceiptModal from "./components/RecieptModal";
 
 import "./App.css";
 
@@ -29,7 +28,6 @@ function App() {
         />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/receipt/:id" element={<ReceiptModal />} />{" "}
       </Routes>
     </CartProvider>
   );

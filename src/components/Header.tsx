@@ -17,7 +17,7 @@ const Header = () => {
             </li>
 
             <li>
-              <a href="/past-orders">Orders</a>
+              <a href="/orders">Orders</a>
             </li>
 
             <li>
