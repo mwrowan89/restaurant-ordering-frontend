@@ -52,7 +52,7 @@ const MenuList = () => {
       <h1 className="menu-title">Menu List</h1>
 
       <div className="tabs">
-        {["all", "entrees", "sushi", "desserts", "pho"].map((category) => (
+        {["all", "entrees", "sushi", "pho","desserts"].map((category) => (
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
