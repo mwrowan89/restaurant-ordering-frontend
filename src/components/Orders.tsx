@@ -106,7 +106,7 @@ const Orders = () => {
           <p>
             <strong>Status:</strong> {searchResult.status}
           </p>
-          <p>
+          {/* <p>
             <strong>Tax:</strong> ${searchResult.tax.toFixed(2)}
           </p>
           <p>
@@ -114,7 +114,7 @@ const Orders = () => {
           </p>
           <p>
             <strong>Total:</strong> ${total.toFixed(2)}
-          </p>
+          </p> */}
           <hr />
           {orderMenuItems.length > 0 && (
             <div>
@@ -138,6 +138,13 @@ const Orders = () => {
               </ul>
             </div>
           )}
+          <div className="order-price-summary">
+            <p>Tax: ${searchResult.tax.toFixed(2)}</p>
+            <p>Tip: ${searchResult.tip.toFixed(2)}</p>
+            <p>
+              <strong>Total:</strong> ${total.toFixed(2)}
+            </p>
+          </div>
         </div>
       )}
     </div>
