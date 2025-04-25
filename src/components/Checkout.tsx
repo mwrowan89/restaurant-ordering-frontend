@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import PaymentModal from "./PaymentModal";
 import { PaymentMethod } from "./PaymentModal";
 import "./Checkout.css";
+import Receipt from "./RecieptModal"; // Import the Receipt component
 
 const Checkout = () => {
   const { cart, getCartTotal } = useCart();
@@ -11,6 +12,7 @@ const Checkout = () => {
   const [selectedTip, setSelectedTip] = useState(0.18);
   const [customTip, setCustomTip] = useState("");
   const [isCustomTipSelected, setIsCustomTipSelected] = useState(false);
+  const [orderData, setOrderData] = useState(null); // State to store the order data
 
   const handleBuyNow = () => {
     setIsModalOpen(true);
@@ -42,7 +44,7 @@ const Checkout = () => {
     : cartTotal * selectedTip;
   const grandTotal = cartTotal + tax + tip;
 
-  const handlePaymentSubmit = async (paymentMethod: PaymentMethod) => {
+  const handleOrderSubmit = async (paymentMethod: PaymentMethod) => {
     const cartTotal = getCartTotal();
     const tax = cartTotal * 0.08; // 8% tax
     const tip = isCustomTipSelected
@@ -64,14 +66,13 @@ const Checkout = () => {
 
     try {
       const response = await axios.post("/api/orders", orderData);
-      console.log("Order submitted successfully:", response);
-      alert("Order submitted successfully!");
+      console.log("Order submitted successfully:", orderData);
+      setOrderData(response.data); // Store the order data
+      setIsModalOpen(true); // Open the receipt modal
     } catch (error) {
       console.error("Error submitting order:", error);
       alert("Failed to submit order. Please try again.");
     }
-
-    setIsModalOpen(false); // Close the modal after submission
   };
 
   return (
@@ -149,8 +150,11 @@ const Checkout = () => {
       {isModalOpen && (
         <PaymentModal
           onClose={closeModal}
-          onSubmitPayment={handlePaymentSubmit}
+          onSubmitPayment={handleOrderSubmit}
         />
+      )}
+      {orderData && isModalOpen && (
+        <Receipt order={orderData} onClose={closeModal} />
       )}
     </div>
   );
