@@ -8,6 +8,7 @@ interface PaymentModalProps {
 }
 export interface PaymentMethod {
   userid: number;
+  name: string; // name on card
   pan: string; //cc number
   expiryMonth: number;
   expiryYear: number;
@@ -19,6 +20,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
 }) => {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>({
     userid: 1,
+    name: "",
     pan: "",
     expiryMonth: 0,
     expiryYear: 0,

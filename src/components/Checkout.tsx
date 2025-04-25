@@ -62,16 +62,32 @@ const Checkout = () => {
       expiryMonth: paymentMethod.expiryMonth,
       expiryYear: paymentMethod.expiryYear,
       status: "pending",
+      id: "",
     };
 
     try {
       const response = await axios.post("/api/orders", orderData);
-      console.log("Order submitted successfully:", orderData);
-      setOrderData(response.data); // Store the order data
-      setIsModalOpen(true); // Open the receipt modal
+      console.log("Order submitted successfully:", response);
+      const createdOrderData = response.data;
+      setOrderData(createdOrderData);
+
+      const menuItemsData = cart.map((item) => ({
+        orderid: createdOrderData.id,
+        itemid: item.id,
+        price: grandTotal,
+        notes: "Some notes //TODO",
+        firstName: paymentMethod.name,
+      }));
+
+      const menuItemsResponse = await axios.post(
+        `/api/items/order/${createdOrderData.id}`,
+        menuItemsData
+      );
+      console.log("Menu items submitted successfully:", menuItemsResponse);
+      setIsModalOpen(true);
     } catch (error) {
-      console.error("Error submitting order:", error);
-      alert("Failed to submit order. Please try again.");
+      console.error("Error submitting order or menu items:", error);
+      alert("Failed to submit order or menu items. Please try again.");
     }
   };
 
