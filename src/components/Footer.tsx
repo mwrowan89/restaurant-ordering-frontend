@@ -11,18 +11,10 @@ const Footer = () => {
           <p className="footer-text">Email: baggins@weathertopgrill.com</p>
         </div>
         <div className="footer-links">
-          <a href="/about" className="footer-link">
-            About Us
-          </a>
-          <a href="/menu" className="footer-link">
-            Menu
-          </a>
-          <a href="/contact" className="footer-link">
-            Contact
-          </a>
-          <a href="/privacy" className="footer-link">
-            Privacy Policy
-          </a>
+          <a className="footer-link">About Us</a>
+          <a className="footer-link">Menu</a>
+          <a className="footer-link">Contact</a>
+          <a className="footer-link">Privacy Policy</a>
         </div>
       </div>
       <div className="footer-bottom">
