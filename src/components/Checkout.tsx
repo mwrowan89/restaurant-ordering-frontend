@@ -5,7 +5,28 @@ import { useCart } from "../context/CartContext";
 import PaymentModal from "./PaymentModal";
 import { PaymentMethod } from "./PaymentModal";
 import "./Checkout.css";
-import Receipt from "./RecieptModal"; // Import the Receipt component
+
+interface OrderItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+interface OrderData {
+  userid: string;
+  ordertime: string;
+  items: OrderItem[];
+  tax: number;
+  tip: number;
+  paymentMethod: PaymentMethod;
+  pan: string;
+  expiryMonth: string;
+  expiryYear: string;
+  status: "pending" | "completed" | "cancelled";
+  id: string;
+  total?: number;
+}
 
 const Checkout = () => {
   const { cart, getCartTotal, clearCart } = useCart();
@@ -13,7 +34,6 @@ const Checkout = () => {
   const [selectedTip, setSelectedTip] = useState(0.18);
   const [customTip, setCustomTip] = useState("");
   const [isCustomTipSelected, setIsCustomTipSelected] = useState(false);
-  const [orderData, setOrderData] = useState(null);
   const navigate = useNavigate();
 
   const handleBuyNow = () => {
@@ -53,16 +73,19 @@ const Checkout = () => {
       ? parseFloat(customTip) || 0
       : cartTotal * selectedTip;
 
-    const orderData = {
-      userid: paymentMethod.userid,
+    const orderData: OrderData = {
+      userid: paymentMethod.userid.toString(),
       ordertime: new Date().toISOString(),
-      items: cart,
+      items: cart.map((item) => ({
+        ...item,
+        id: item.id.toString(),
+      })),
       tax,
       tip,
       paymentMethod,
       pan: paymentMethod.pan,
-      expiryMonth: paymentMethod.expiryMonth,
-      expiryYear: paymentMethod.expiryYear,
+      expiryMonth: paymentMethod.expiryMonth.toString(),
+      expiryYear: paymentMethod.expiryYear.toString(),
       status: "pending",
       id: "",
     };
@@ -70,7 +93,6 @@ const Checkout = () => {
     try {
       const response = await axios.post("/api/orders", orderData);
       const createdOrderData = response.data;
-      setOrderData(createdOrderData);
 
       const menuItemsData = cart.map((item) => ({
         orderid: createdOrderData.id,
@@ -170,9 +192,6 @@ const Checkout = () => {
           onClose={closeModal}
           onSubmitPayment={handleOrderSubmit}
         />
-      )}
-      {orderData && isModalOpen && (
-        <Receipt order={orderData} onClose={closeModal} />
       )}
     </div>
   );
