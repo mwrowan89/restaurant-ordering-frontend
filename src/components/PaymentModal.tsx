@@ -64,6 +64,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
               placeholder="1234 5678 9012 3456"
               name="pan"
               minLength={16}
+              maxLength={16}
               onChange={handleChange}
               required
             />
@@ -75,6 +76,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                 type="number"
                 max={12}
                 min={1}
+                minLength={1}
                 maxLength={2}
                 className="form-input"
                 placeholder="MM"
@@ -105,6 +107,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
                 placeholder="123"
                 name="cvv"
                 minLength={3}
+                maxLength={4}
                 onChange={handleChange}
                 required
               />

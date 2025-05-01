@@ -21,5 +21,6 @@
   text-align: center;
   margin-top: 20vh;
   font-size: 1.5rem;
-  color: #ef4444; /* Red-500 */
+  color: #ef4444;
+  min-height: 50vh;
 }

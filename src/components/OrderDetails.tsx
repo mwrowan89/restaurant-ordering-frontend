@@ -118,7 +118,7 @@ const OrderDetails = () => {
       <div className="order-price-summary">
         <p>Tax: ${order.tax.toFixed(2)}</p>
         <p>Tip: ${order.tip.toFixed(2)}</p>
-        <p>
+        <p id="order-total">
           <strong>Total:</strong> ${orderTotal.toFixed(2)}
         </p>
       </div>

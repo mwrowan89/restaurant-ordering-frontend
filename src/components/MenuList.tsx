@@ -49,7 +49,7 @@ const MenuList = () => {
         <div className="success-message">{successMessage}</div>
       )}
 
-      <h1 className="menu-title">Menu List</h1>
+      <h1 className="menu-title">Menu</h1>
 
       <div className="tabs">
         {["all", "entrees", "sushi", "pho","desserts"].map((category) => (

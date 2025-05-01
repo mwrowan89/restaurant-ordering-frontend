@@ -31,7 +31,7 @@ interface OrderData {
 const Checkout = () => {
   const { cart, getCartTotal, clearCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTip, setSelectedTip] = useState(0.18);
+  const [selectedTip, setSelectedTip] = useState(0.20);
   const [customTip, setCustomTip] = useState("");
   const [isCustomTipSelected, setIsCustomTipSelected] = useState(false);
   const navigate = useNavigate();
