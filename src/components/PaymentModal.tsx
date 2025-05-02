@@ -64,7 +64,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
               placeholder="1234 5678 9012 3456"
               name="pan"
               minLength={16}
-              maxLength={16}
+              maxLength={18}
               onChange={handleChange}
               required
             />

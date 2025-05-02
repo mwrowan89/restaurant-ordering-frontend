@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Orders.css";
 import { useMenuItems } from "../context/MenuItemsContext";
-import { MenuItem } from "./MenuList";
+import { MenuItem } from "../types/MenuItemType";
 
 interface Order {
   id: number;
@@ -90,7 +90,7 @@ const OrderDetails = () => {
     <div className="orders-container">
       <h1 className="orders-title">Order Details</h1>
       <p>
-        <strong>Order ID:</strong> {order.id}
+        <strong>Order #:</strong> {order.id}
       </p>
       <p>
         <strong>Order Time:</strong>{" "}

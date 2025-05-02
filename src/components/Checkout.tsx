@@ -138,7 +138,6 @@ const Checkout = () => {
             ))}
           </ul>
           <div>
-            <h2 className="cart-tax">Total: ${cartTotal.toFixed(2)}</h2>
             <h2 className="cart-tax">Tax (8%): ${tax.toFixed(2)}</h2>
             <div className="tip-section">
               <label></label>

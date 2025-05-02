@@ -15,6 +15,9 @@ const Cart = () => {
   return (
     <div className="cart-container">
       <h2 className="cart-title">Cart</h2>
+      {cart.length === 0 ? (
+        <p className="empty-cart-message">Your cart is empty.</p>
+      ) : (
       <div className="cart-item-container">
         {cart.map((item) => (
           <div key={item.id} className="cart-item">
@@ -49,6 +52,7 @@ const Cart = () => {
           </div>
         ))}
       </div>
+      )}
 
       <div className="cart-total">
         <h2 className="cart-total-title">Total:</h2>
@@ -66,7 +70,9 @@ const Cart = () => {
           Checkout
         </button>
       </div>
+      
     </div>
+        
   );
 };
 

@@ -50,6 +50,7 @@
 .item-details {
   font-size: 0.875rem;
   color: #a0aec0;
+  float: left;
 }
 
 .item-price {
