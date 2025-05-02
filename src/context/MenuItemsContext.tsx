@@ -6,16 +6,7 @@ import {
   ReactNode,
 } from "react";
 import axios from "axios";
-
-export interface MenuItem {
-  id: number;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  imageurl: string;
-  available: boolean;
-}
+import { MenuItem } from "../types/MenuItemType";
 
 interface MenuItemsContextType {
   menuItems: MenuItem[];

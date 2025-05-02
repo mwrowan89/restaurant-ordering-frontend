@@ -2,16 +2,7 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useMenuItems } from "../context/MenuItemsContext";
 import "./MenuList.css";
-
-export interface MenuItem {
-  id: number;
-  name: string;
-  description: string;
-  category: string;
-  price: number;
-  imageurl: string;
-  available: boolean;
-}
+import { MenuItem } from "../types/MenuItemType";
 
 const MenuList = () => {
   const { menuItems } = useMenuItems();
