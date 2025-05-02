@@ -6,11 +6,8 @@ import {
   ReactNode,
 } from "react";
 import axios from "axios";
-import { MenuItem } from "../types/MenuItemType";
+import { MenuItem, MenuItemsContextType } from "../types/MenuItemType";
 
-interface MenuItemsContextType {
-  menuItems: MenuItem[];
-}
 
 const MenuItemsContext = createContext<MenuItemsContextType | undefined>(
   undefined

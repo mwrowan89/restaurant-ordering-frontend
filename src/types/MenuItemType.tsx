@@ -7,3 +7,7 @@ export interface MenuItem {
   imageurl: string;
   available: boolean;
 }
+
+export interface MenuItemsContextType {
+  menuItems: MenuItem[];
+}
