@@ -51,15 +51,13 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #ccc;
 }
 .cart-item-hover {
   display: flex;
   gap: 1rem;
-  justify-content: space-around;
+  justify-content: space-between;
   width: auto;
   height: auto;
 }
