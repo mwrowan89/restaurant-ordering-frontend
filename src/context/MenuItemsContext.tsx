@@ -40,6 +40,7 @@ export const MenuItemsProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// eslint-disable-next-line
 export const useMenuItems = () => {
   const context = useContext(MenuItemsContext);
   if (!context) {

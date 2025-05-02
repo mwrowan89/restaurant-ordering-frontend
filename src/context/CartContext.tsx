@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
@@ -78,6 +78,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 };
 
 // Custom hook
+// eslint-disable-next-line
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
