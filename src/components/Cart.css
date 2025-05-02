@@ -30,12 +30,20 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
+  transition: box-shadow 0.3s;
+}
+
+.cart-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cart-item-title {
   font-size: 1.125rem;
   font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 
 .cart-item-image {
   width: 100%;
